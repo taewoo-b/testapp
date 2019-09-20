@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.myapp.mapper.UserMapper">
+	<select id="getTime" resultType="string">
+		select now()
+	</select>
+	
+	<insert id="insertUser">
+		insert into tbl_user (uid, upw, uname) values 
+		( #{uid}, #{upw}, #{uname} )
+	</insert>
+	
+	<!-- 사용자 정보 가져오기 -->
+    <select id="selectUser" resultType="com.test.myapp.domain.UserVO">
+	    select uid, uname, regdate, upoint from tbl_user where uid = #{uid}
+    </select>
+
+    <!-- 로그인하기 위한 정보 가져오기 -->
+    <select id="readWithPW" resultType="com.test.myapp.domain.UserVO">
+    	select * from tbl_user where uid = #{uid} and upw = #{upw}
+    </select>
+    
+    <resultMap type="UserVO" id="userMap">
+		<result property="uid" column = "bno"/>
+		<result property="upw" column = "title"/>
+		<result property="uname" column = "content"/>
+		<result property="upoint" column = "writer"/>
+		<result property="regdate" column = "regdate"/>
+	</resultMap>
+	
+	<!-- 로그인 맵퍼 -->
+	<select id="login" resultMap="userMap">
+		select * from tbl_user where uid = #{uid} and upw = #{upw}
+	</select>
+
+	<!-- 자동로그인 맵퍼 -->
+	<update id="keepLogin">
+		update tbl_user set sessionKey = #{sessionId}, sessionLimit = #{next}
+		where uid = #{uid}
+	</update>
+	
+	<select id="checkUserWithSessionKey" resultMap="userMap">
+		select * from tbl_user 
+		where sessionKey = #{value}
+		and sessionlimit > now()
+	</select>
+
+	
+		
+		
+
+
+	
+</mapper>
