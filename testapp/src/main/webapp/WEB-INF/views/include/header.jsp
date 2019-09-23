@@ -48,13 +48,18 @@
 					<c:if test="${empty login}">
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">로그인<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="/user/login">로그인</a></li>
-								<li><a href="/user/register">회원가입</a></li>
-
-							</ul>
+							<div class="dropdown-menu login-form">
+								<form method="post" accept-charset="UTF-8" style="margin:0px;padding:10px;">
+									<input type="text" class="form-control" placeholder="아이디" id="uid" name="uid" style="margin-bottom:5px;" >
+									<input type="password" class="form-control" placeholder="비밀번호" id="upw" name="upw" style="margin-bottom:5px;" >
+									<input type="checkbox" name="useAutoLogin"> 자동로그인
+									<button class="btn btn-default btn-block" type="button" id="sign-in">로그인</button>
+								</form>
+							</div>
 						</li>
+						<li><a href="/user/register">회원가입</a></li>
 					</c:if>
+
 					<c:if test="${not empty login}">
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">${login.uname}님(${login.uid})<span class="caret"></span></a>
@@ -71,11 +76,46 @@
 	<!-- /.container-fluid --> 
 	</nav>
 </div>
+
+
+
+<script>
+$("#sign-in").on("click", function(){
+	var userid = $("#uid").val();
+	var userpw = $("#upw").val();
+	var autoLogin = $("#useAutoLogin").is(":checked");
+	
+	$.ajax({
+		type:'post',
+		url:'/user/loginAjax',
+		headers :{
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		contentType: 'application/json',
+		dataType : 'json',
+		data : JSON.stringify({
+			uid:userid,
+			upw:userpw,
+			useAutoLogin:autoLogin
+		}),
+		success:function(result){
+			alert(result.msg);
+			if(result.success){
+				location.reload();
+			}
+		}
+	})
+});
+</script>
+
 <c:if test="${!empty result}">
 <div class="alert alert-${result eq 'success' ? 'success' : 'danger' } alert-dismissible" role="alert">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	<strong>${result eq 'success' ? '성공' : '실패' }</strong> ${msg}
 </div>
 </c:if>
+
+
 
 
