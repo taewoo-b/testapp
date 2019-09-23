@@ -32,5 +32,7 @@ public interface BoardService {
 	public List<BoardVO> listPage(SearchCriteria cri) throws Exception;
 	//글 개수 가져오기
 	public int countTotal(SearchCriteria cri) throws Exception;
+	
+	public List<String> getAttach(int bno) throws Exception;
 
 }

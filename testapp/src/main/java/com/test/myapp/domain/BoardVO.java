@@ -10,10 +10,20 @@ public class BoardVO {
 	private Date regdate;
 	private int viewcnt;
 	
+	private String[] files;
+	
 	@Override
 	public String toString(){
 		return "boardVO[bno=" + bno + ", title=" + title 
 				+ ", writer=" + writer + ", viewcnt=" + viewcnt +"]";
+	}
+
+	public String[] getFiles() {
+		return files;
+	}
+
+	public void setFiles(String[] files) {
+		this.files = files;
 	}
 
 	public int getBno() {

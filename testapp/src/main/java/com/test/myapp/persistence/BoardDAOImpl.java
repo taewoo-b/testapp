@@ -68,6 +68,19 @@ public class BoardDAOImpl implements BoardDAO {
 	public int countPaging() throws Exception {
 		return session.selectOne(namespace + ".countPaging");
 	}
+	
+	@Override
+	public void addAttach(String fullName) throws Exception {
+		session.insert(namespace + ".addAttach", fullName);
+	}
+	
+	@Override
+	public List<String> getAttach(int bno) throws Exception {
+		return session.selectList(namespace + ".getAttach", bno);
+	}
+
+
+
 
 
 	

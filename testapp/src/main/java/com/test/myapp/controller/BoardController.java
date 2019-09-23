@@ -1,6 +1,7 @@
 package com.test.myapp.controller;
 
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.test.myapp.domain.BoardVO;
@@ -177,6 +179,13 @@ public class BoardController {
 		}
 		return "/board/read";
 	}
+	
+	@ResponseBody
+	@RequestMapping("/getAttach/{bno}")
+	public List<String> getAttach(@PathVariable("bno")int bno) throws Exception {
+		return bs.getAttach(bno);
+	}
+
 
 
 }

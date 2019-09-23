@@ -85,9 +85,30 @@ $(document).ready(function(){
 			setTimeout("clearMsg()", 2000);
 			e.preventDefault();
 			return;
-		}
+			}
+		});
 	});
-});
+	
+	$(".file-attachments").on("click", ".delbtn", function(){
+		var parent = $(this).parent().parent(); //li 태그
+	
+		$.ajax({
+			url:"/deleteFile",
+			type:"post",
+			data:{fileName:$(this).attr('data-src')},
+			dataType:'text',
+			success:function(data){
+				if(data == 'deleted'){
+					parent.fadeOut(300, function(){parent.remove();});
+				}else {
+					alert(data);
+				}
+			}
+		
+		});
+	});
 
 
 </script>
+
+<script src="/resources/js/upload.js"></script>

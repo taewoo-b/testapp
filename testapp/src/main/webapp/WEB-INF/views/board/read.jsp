@@ -20,6 +20,11 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="row">
+		<ul class="file-attachments clearfix">
+		</ul>
+	</div>
 
 	<div class="row">
 		<c:if test="${login.uid == boardVO.writer}">
@@ -29,6 +34,61 @@
 		<a href="/board/list/${cri.page}/${cri.perPageNum}?searchType=${cri.searchType}&keyword=${cri.keyword}" class="btn btn-primary" id="list">글목록</a>
 	</div>
 </div>
+<div class="popup back" style="display:none;"></div>
+<div class="popup front" style="display:none;">
+	<img id="popupImg"/>
+</div>
+
 
 <%@ include file="../include/footer.jsp" %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script id="fileTemplate" type="text/x-handlebars-template">
+	<li data-src="{{fullName}}">
+		<span class="file-attachment-icon has-img">
+			<img src="{{imgsrc}}">
+		</span>
+		<div class="file-attachment-info">
+			<a href="{{getLink}}" class="file-attachment-name">{{fileName}}</a>
+		</div>
+	</li>
+</script>
+<script src="/resources/js/upload.js"></script>
+<script>
+$(document).ready(function(){	
+	var bno = ${boardVO.bno};
+	var template = Handlebars.compile($("#fileTemplate").html());
+	
+		$.getJSON("/board/getAttach/" + bno, function(list){
+			$(list).each(function(){
+				var fileInfo = getFileInfo(this);
+				var html = template(fileInfo);
+				
+				$(".file-attachments").append(html);
+			})
+		});
+	});
+	
+	$(".file-attachments").on("click", ".file-attachment-info a", function(e){
+		var fileLink = $(this).attr("href");
+		var ext = fileLink.substring(fileLink.lastIndexOf('.') + 1, fileLink.length).toLowerCase();
+		
+		if(checkImageType(ext)){
+			//그림파일이면 다운로드가 아니라 라이트 박스
+			e.preventDefault();
+			console.log(ext);
+			var imgTag = $("#popupImg");
+			imgTag.attr("src", fileLink);
+			
+			$(".popup").show("slow");
+			imgTag.addClass("show");
+		}
+	});
+	
+	$("#popupImg").on("click", function(){
+		$(".popup").hide("slow");
+	});
+
+</script>
+
 

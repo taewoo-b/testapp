@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+.fileDrop {
+	width:100%;
+	min-height:100px;
+	background-color:#eee;
+	border:1px solid #ccc;
+	border-radius:4px;
+	box-shadow:inset 0 1px 1px rgba(0,0,0,.075);
+	box-sizing:border-box;
+}
+
+.file-attachments {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.file-attachments li {
+	float: left;
+	width: 200px;
+	border: 1px solid #eee;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.file-attachment-icon {
+	display: block;
+	text-align: center;
+	font-size: 65px;
+	color: #666;
+	padding: 20px 10px;
+}
+
+.file-attachment-icon.has-img {
+	padding: 0;
+}
+
+.file-attachment-icon.has-img > img {
+	max-width: 100%;
+	height: auto;
+}
+
+.file-attachment-info {
+	display: block;
+	padding: 10px;
+	background: #f4f4f4;
+}
+
+.file-attachment-name {
+	font-weight: bold;
+	color: #666;
+}
+
+.popup {
+	position:absolute; top:0px; left:0px;
+}
+.back {
+	background-color:gray; opacity:0.5; width:100%; height:300%;
+	overflow:hidden; z-index:1000;
+}
+
+.front {
+	z-index : 1001; opacity:1; border:1px; margin:auto;
+}
+
+.show {
+	position:relative;
+	max-width:1200px;
+	max-height:800px;
+	overflow:auto;
+}
+

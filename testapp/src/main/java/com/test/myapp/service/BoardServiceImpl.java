@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.test.myapp.domain.BoardVO;
 import com.test.myapp.domain.Criteria;
@@ -17,9 +18,18 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardDAO dao;
 	
+	@Transactional
 	@Override
 	public void regist(BoardVO vo) throws Exception {
 		dao.create(vo);
+		
+		String[] files = vo.getFiles();
+		
+		if (files == null) { return ;}
+		
+		for (String fileName : files){
+			dao.addAttach(fileName);
+		}
 	}
 	
 	@Override
@@ -67,7 +77,11 @@ public class BoardServiceImpl implements BoardService {
 	public int countTotal(SearchCriteria cri) throws Exception {
 		return dao.countPaging(cri);
 	}
-
+	
+	@Override
+	public List<String> getAttach(int bno) throws Exception {
+		return dao.getAttach(bno);
+	}
 
 
 	

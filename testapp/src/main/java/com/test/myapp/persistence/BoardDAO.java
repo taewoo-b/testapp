@@ -26,5 +26,10 @@ public interface BoardDAO {
 	//글 개수 가져오기
 	public int countPaging(SearchCriteria cri) throws Exception;
 
+	//첨부파일 저장하기
+	public void addAttach(String fullName) throws Exception;
+
+	//첨부파일 가져오기
+	public List<String> getAttach(int bno) throws Exception;
 
 }
