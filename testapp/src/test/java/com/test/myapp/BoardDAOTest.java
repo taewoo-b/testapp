@@ -57,7 +57,7 @@ public class BoardDAOTest {
 		Criteria cri = new Criteria();
 		cri.setPage(2);
 		cri.setPerPageNum(10);
-		voList = bs.listPage(cri);
+//		voList = bs.listPage(cri);
 		
 		for(BoardVO vo : voList){
 			logger.info(vo.toString());
