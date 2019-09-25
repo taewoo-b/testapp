@@ -20,5 +20,6 @@ public interface ReplyDAO {
 
 	public int count(int bno) throws Exception;
 
+	
 }
 

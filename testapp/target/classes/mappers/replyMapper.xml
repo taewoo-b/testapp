@@ -27,7 +27,6 @@
 		select * from tbl_reply
 		where rno = #{rno}
 	</select>
-	
 	<select id="listPage" resultType="ReplyVO">
 		select * from tbl_reply
 		where bno = #{bno}
@@ -40,4 +39,7 @@
 	</select>
 		
 	
+	
+	
 </mapper>
+

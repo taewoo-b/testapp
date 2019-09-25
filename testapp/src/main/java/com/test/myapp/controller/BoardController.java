@@ -139,7 +139,7 @@ public class BoardController {
 	}
 
 
-	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	@RequestMapping(value={"/modify/{bno}", "/modify/{bno}/{page}/{perPageNum}", "/modify/{bno}/{page}"}, method=RequestMethod.POST)
 	public String modifyPOST(BoardVO vo, SearchCriteria cri, HttpSession session, RedirectAttributes rttr) throws Exception {
 		UserVO user = (UserVO)session.getAttribute("login");
 		

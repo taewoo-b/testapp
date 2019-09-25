@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>양영디지털 고등학교</title>
+<title>마크로젠 임상분석부</title>
 
 <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 <!-- <link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

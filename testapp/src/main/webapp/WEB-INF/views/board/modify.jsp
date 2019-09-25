@@ -89,7 +89,7 @@ $(document).ready(function(){
 	});
 	
 	$("#cancel").on("click", function(){
-		self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+		self.location = "/board/list/page=${cri.page}&perPageNum=${cri.perPageNum}";
 	})
 	
 	$("#modifyForm").on("submit", function(e){
