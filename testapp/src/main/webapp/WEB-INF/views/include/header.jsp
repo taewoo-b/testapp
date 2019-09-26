@@ -70,7 +70,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">${login.uname}님(${login.uid})<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">회원정보</a></li>
+								<li><a href="/user/usermodify">회원정보</a></li>
 								<li><a href="/user/logout">로그아웃</a></li>
 							</ul>
 						</li>

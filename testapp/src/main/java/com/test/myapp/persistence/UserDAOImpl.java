@@ -64,6 +64,12 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.update(namespace + ".keepLogin", paramMap);
 	}
 
+	@Override
+	public void usermodify(UserVO vo) throws Exception {
+		sqlSession.selectOne(namespace + ".usermodify", vo);
+		
+	}
+
 
 
 

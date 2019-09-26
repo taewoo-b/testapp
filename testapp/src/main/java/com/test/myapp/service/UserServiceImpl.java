@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.test.myapp.domain.UserVO;
 import com.test.myapp.dto.LoginDTO;
@@ -31,7 +32,6 @@ public class UserServiceImpl implements UserService{
 		return dao.checkUserWithSessionKey(value);
 	}
 
-	
 	@Override
 	public void register(UserVO vo) throws Exception, InvalidRegisterException {
 		UserVO tempUser = dao.readUser(vo.getUid()); //해당 아이디로 이미 유저가 존재하는지 확인
@@ -42,8 +42,13 @@ public class UserServiceImpl implements UserService{
 		dao.insertUser(vo);
 	}
 	
-	
-
-
-
+	@Transactional
+	@Override
+	public void usermodify(UserVO vo) throws Exception {
+		dao.usermodify(vo); 
+		
+		}
 }
+
+
+

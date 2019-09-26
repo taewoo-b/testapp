@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,8 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.test.myapp.domain.AjaxResVO;
+import com.test.myapp.domain.BoardVO;
 import com.test.myapp.domain.UserVO;
 import com.test.myapp.dto.LoginDTO;
+import com.test.myapp.exception.InvalidAccessException;
 import com.test.myapp.service.UserService;
 
 @Controller
@@ -139,7 +141,39 @@ public class UserController {
 		rttr.addFlashAttribute("msg", "성공적으로 회원가입 되었습니다.");
 		return "redirect:/";
 	}
-
 	
-}
+	@RequestMapping(value="/usermodify", method = RequestMethod.GET)
+	public void modifyGET(){
+	
+	}
+	@RequestMapping(value="/usermodify", method = RequestMethod.POST)
+	public String modifyPost(UserVO vo, RedirectAttributes rttr, HttpSession session) throws Exception {
+		
+		service.usermodify(vo);
+		
+		rttr.addFlashAttribute("result", "success");
+		rttr.addFlashAttribute("msg", "성공적으로 수정되었습니다.");
+		
+		Object obj= session.getAttribute("login");
+		
+		//로그인되어있는 상태였다면
+		if(obj != null) {
+			vo = (UserVO) obj;
+			session.invalidate();
+			
+//			//쿠키 검사
+//			Cookie loginCookie = WebUtils.getCookie(req, "loginCookie");
+//			
+//			if(loginCookie != null){
+//				loginCookie.setPath("/");
+//				loginCookie.setMaxAge(0);
+//				res.addCookie(loginCookie);
+//				service.keepLogin(vo.getUid(), session.getId(), new Date());//오늘날짜로 지정
+//			}
+		}
+		
+		return "redirect:/";
+	}
 
+
+}

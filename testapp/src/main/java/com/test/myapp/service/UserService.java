@@ -15,4 +15,8 @@ public interface UserService {
 	public UserVO checkLoginBefore(String value);
 	
 	public void register(UserVO vo) throws Exception, InvalidRegisterException;
+
+	public void usermodify(UserVO vo) throws Exception;
+
+	
 }

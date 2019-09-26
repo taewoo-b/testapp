@@ -131,14 +131,13 @@ public class BoardController {
 	}
 
 
-	
 	@RequestMapping(value={"/modify/{bno}", "/modify/{bno}/{page}/{perPageNum}", "/modify/{bno}/{page}"}, method = RequestMethod.GET)
 	public String modifyGET(@PathVariable("bno") int bno, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		model.addAttribute(bs.read(bno)); //해당 글번호의 글을 읽어와서 모델에 넣어줌
 		return "/board/modify";
 	}
 
-
+	
 	@RequestMapping(value={"/modify/{bno}", "/modify/{bno}/{page}/{perPageNum}", "/modify/{bno}/{page}"}, method=RequestMethod.POST)
 	public String modifyPOST(BoardVO vo, SearchCriteria cri, HttpSession session, RedirectAttributes rttr) throws Exception {
 		UserVO user = (UserVO)session.getAttribute("login");

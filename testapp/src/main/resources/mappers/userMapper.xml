@@ -23,6 +23,11 @@
     	select * from tbl_user where uid = #{uid} and upw = #{upw}
     </select>
     
+    <update id="usermodify">
+		update tbl_user set upw= #{upw}, uname = #{uname}
+		where uid = #{uid}
+	</update>
+    
     <resultMap type="UserVO" id="userMap">
 		<result property="uid" column = "bno"/>
 		<result property="upw" column = "title"/>

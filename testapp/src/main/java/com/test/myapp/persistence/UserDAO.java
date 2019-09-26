@@ -19,6 +19,8 @@ public interface UserDAO {
 	public void keepLogin(String uid, String sessionId, Date next);
 	
 	public UserVO checkUserWithSessionKey(String value);
+	//회원정보 수정하기
+	public void usermodify(UserVO vo) throws Exception;
 
 }
 

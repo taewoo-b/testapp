@@ -84,7 +84,7 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional
 	@Override
 	public void modify(BoardVO vo) throws Exception {
-		dao.update(vo); //글정보 업데이트 이후
+		dao.update(vo);
 		
 		int bno = vo.getBno();
 		
