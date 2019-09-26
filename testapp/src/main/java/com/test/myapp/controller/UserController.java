@@ -161,7 +161,7 @@ public class UserController {
 			vo = (UserVO) obj;
 			session.invalidate();
 			
-//			//쿠키 검사
+//			//쿠키 검사a
 //			Cookie loginCookie = WebUtils.getCookie(req, "loginCookie");
 //			
 //			if(loginCookie != null){
