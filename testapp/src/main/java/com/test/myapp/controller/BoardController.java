@@ -43,6 +43,7 @@ public class BoardController {
 
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String registerPOST(BoardVO board, HttpSession session, Model model, RedirectAttributes rttr) throws InvalidAccessException {
+		
 		logger.info("글 등록 POST 요청입니다");
 		
 		UserVO vo = (UserVO)session.getAttribute("login");

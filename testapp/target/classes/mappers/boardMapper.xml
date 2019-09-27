@@ -89,6 +89,7 @@
 	<select id="getAttach" resultType="string">
 		select fullName from tbl_attach where bno = #{bno} order by regdate
 	</select>
+
 		
 	<!-- 첨부파일 삭제 -->
 	<delete id="deleteAttach">

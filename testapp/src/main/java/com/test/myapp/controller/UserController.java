@@ -30,7 +30,6 @@ import com.test.myapp.service.UserService;
 public class UserController {
 	@Inject
 	private UserService service;
-	private HttpSession session;
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public void loginGET(){
@@ -51,7 +50,6 @@ public class UserController {
 			return "redirect:" + (dest != null ? (String)dest : "/");
 		}
 	}
-
 	
 	@ResponseBody
 	@RequestMapping(value="/loginAjax", method=RequestMethod.POST)
@@ -68,8 +66,7 @@ public class UserController {
 		}
 		
 		return retJSON;
-	}
-	
+	}	
 	
 	private UserVO makeLogin(HttpServletResponse res, HttpSession session, LoginDTO dto){
 		UserVO vo = null;
@@ -102,8 +99,6 @@ public class UserController {
 		return vo;
 	}
 
-
-	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpServletRequest req, HttpServletResponse res, HttpSession session, RedirectAttributes rttr) throws Exception{
 		
@@ -127,7 +122,6 @@ public class UserController {
 		return "redirect:/";
 		
 	}
-
 
 	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public void registerGET(){
@@ -154,6 +148,12 @@ public class UserController {
 		rttr.addFlashAttribute("result", "success");
 		rttr.addFlashAttribute("msg", "성공적으로 수정되었습니다.");
 		
+		
+		
+		
+		
+		
+		
 		Object obj= session.getAttribute("login");
 		
 		//로그인되어있는 상태였다면
@@ -161,7 +161,7 @@ public class UserController {
 			vo = (UserVO) obj;
 			session.invalidate();
 			
-//			//쿠키 검사a
+//			//쿠키검사
 //			Cookie loginCookie = WebUtils.getCookie(req, "loginCookie");
 //			
 //			if(loginCookie != null){
@@ -174,6 +174,5 @@ public class UserController {
 		
 		return "redirect:/";
 	}
-
 
 }

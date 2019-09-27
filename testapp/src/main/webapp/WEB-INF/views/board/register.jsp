@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-
-
 <div class="container">
 	<div class="row">
 		<div class="page-header">
@@ -62,19 +60,19 @@
 <script src="/resources/js/upload.js"></script>
 <!-- 핸들바 추가 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-							<script id="fileTemplate" type="text/x-handlebars-template">
-								<li>
-									<span class="file-attachment-icon has-img">
-										<img src="{{imgsrc}}">
-									</span>
-									<div class="file-attachment-info">
-										<a href="{{getLink}}" class="file-attachment-name">{{fileName}}</a>
-										<button type='button' data-src="{{fullName}}" class="btn btn-default btn-xs pull-right delbtn">
-										<i class="fa fa-fw fa-remove"></i></button>
-										</a>
-									</div>
-								</li>
-							</script>
+<script id="fileTemplate" type="text/x-handlebars-template">
+	<li>
+		<span class="file-attachment-icon has-img">
+			<img src="{{imgsrc}}">
+		</span>
+		<div class="file-attachment-info">
+			<a href="{{getLink}}" class="file-attachment-name">{{fileName}}</a>
+				<button type='button' data-src="{{fullName}}" class="btn btn-default btn-xs pull-right delbtn">
+				<i class="fa fa-fw fa-remove"></i></button>
+			</a>
+		</div>
+	</li>
+</script>
 <script>
 	var template = Handlebars.compile($("#fileTemplate").html()); //핸들바 템플릿 
 	

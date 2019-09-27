@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,7 +23,6 @@
 <!-- AJAX 업로드하는영역 CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link href="/resources/css/custom.css" rel="stylesheet" type="text/css" />
-
 
 </head>
 <body>
@@ -82,8 +81,13 @@
 	<!-- /.container-fluid --> 
 	</nav>
 </div>
-
-
+<c:if test="${!empty result}">
+<div class="alert alert-${result eq 'success' ? 'success' : 'danger' } alert-dismissible" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<strong>${result eq 'success' ? '성공' : '실패' }</strong> ${msg}
+</div>
+</c:if>
+</body>
 
 <script>
 $("#sign-in").on("click", function(){
@@ -114,14 +118,4 @@ $("#sign-in").on("click", function(){
 	})
 });
 </script>
-
-<c:if test="${!empty result}">
-<div class="alert alert-${result eq 'success' ? 'success' : 'danger' } alert-dismissible" role="alert">
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<strong>${result eq 'success' ? '성공' : '실패' }</strong> ${msg}
-</div>
-</c:if>
-
-
-
 
